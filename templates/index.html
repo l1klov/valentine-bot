@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тебе послание! ❤️</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #fce4ec; flex-direction: column; text-align: center; }
+        .container { padding: 20px; }
+        h1 { color: #d81b60; font-size: 24px; }
+        img { width: 80%; max-width: 300px; border-radius: 15px; margin-bottom: 20px; }
+        .buttons { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 20px; }
+        button { padding: 15px 25px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+        #yesBtn { background-color: #ff4081; color: white; }
+        #noBtn { background-color: white; color: #ff4081; border: 2px solid #ff4081; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <img src="https://media.giphy.com/media/cLS1cfxvGOPVpf9g3y/giphy.gif">
+        <h1>{{ name }}, будешь моим Валентином?</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">ДА</button>
+            <button id="noBtn" onclick="handleNo()">Нет</button>
+        </div>
+    </div>
+
+    <div id="success-content" class="hidden">
+        <img src="{{ photo_url }}">
+        <h1>УРАААА !!!! ❤️</h1>
+    </div>
+
+    <script>
+        let phase = 0;
+        let yesSize = 18;
+        const phrases = [
+            "Нет", 
+            "Ты уверена?", 
+            "А если подумать?", 
+            "Пожалуйста-пожалуйста", 
+            "Я буду плакать...", 
+            "Давай начнем сначала?"
+        ];
+
+        function handleNo() {
+            // Увеличиваем кнопку "ДА"
+            yesSize += 20;
+            document.getElementById('yesBtn').style.fontSize = yesSize + "px";
+            document.getElementById('yesBtn').style.padding = (yesSize/1.2) + "px " + (yesSize*1.5) + "px";
+            
+            // Меняем текст на кнопке "НЕТ"
+            phase = (phase + 1) % phrases.length;
+            document.getElementById('noBtn').innerText = phrases[phase];
+        }
+
+        function celebrate() {
+            document.getElementById('main-content').classList.add('hidden');
+            document.getElementById('success-content').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
