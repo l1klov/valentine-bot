@@ -12,7 +12,7 @@ from aiogram.fsm.context import FSMContext
 # --- НАСТРОЙКИ ---
 # Если запускаешь на ПК — вставь токен сюда. На Render он возьмется из Environment Variables.
 BOT_TOKEN = os.getenv("8515518123:AAGsFUHNzIy-_Rme9WiW2r17SUNGh6eeX1M") 
-BASE_URL = os.getenv("")
+BASE_URL = os.getenv("https://valentine-bot-elch.onrender.com")
 
 app = Flask(__name__)
 bot = Bot(token=BOT_TOKEN)
@@ -120,4 +120,5 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
+
 
